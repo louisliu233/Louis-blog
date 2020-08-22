@@ -3,7 +3,7 @@
 
     padding: .4rem;
     overflow: hidden;
-    height: 2.8rem;
+    height: 3.2rem;
     border-bottom:1px solid #ccc;
 }
 .header-logo{
@@ -15,7 +15,7 @@
 
 }
 .header-txt{
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: #999;
     display: inline-block;
     padding-left: 0.3rem;

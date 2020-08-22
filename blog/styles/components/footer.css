@@ -1,0 +1,14 @@
+.footer-div{
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    color:#888;
+}
+.footer-icon {
+    border-top: 1px solid rgb(197, 194, 194);
+    text-align: center;
+    margin: 0 auto;
+    line-height: 32px;
+    font-size: 16px;
+    width: 1200px;
+}
