@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Author from '../components/Avthor'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
+import axios from 'axios'
 import { FireOutlined, CalendarOutlined, FolderOutlined } from '@ant-design/icons';
 import '../styles/pages/detailed.css'
 import ReactMarkdown from 'react-markdown'
@@ -102,4 +103,16 @@ const Detailed = () => {
  </>
   )
 }
+
+Detailed.getInitialProps = async(context)=>{
+
+  console.log(context.query.id)
+  let id =context.query.id
+  
+  return await axios('http://127.0.0.1:7001/default/getArticleById/'+id).then(
+      res=>res.data.data[0]
+        //console.log(title)
+    )  
+}
+
 export default Detailed
