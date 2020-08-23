@@ -9,6 +9,7 @@ import Footer from '../components/Footer'
 import axios from 'axios'
 import { FireOutlined, CalendarOutlined, FolderOutlined } from '@ant-design/icons';
 import '../styles/pages/index.css'
+import servicePath from '../config/apiUrl'
 
 const Home = (list) => {
   const [mylist, setMylist] = useState(list.data)
@@ -26,7 +27,7 @@ const Home = (list) => {
             dataSource={mylist}
             renderItem={item => (
               <List.Item>
-                <div className='list-title'>{item.title}
+                <div className='list-title'>
                 <Link href={{pathname:'/detailed', query:{id:item.id}}} >
                 <a>{item.title}</a>
                 </Link>
@@ -53,7 +54,7 @@ const Home = (list) => {
 
 Home.getInitialProps = async ()=>{
   
-  return await axios('http://127.0.0.1:7001/default/getArticleList').then(
+  return await axios(servicePath.getArticleList).then(
       res=>res.data
     )
 }
