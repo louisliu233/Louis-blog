@@ -46,8 +46,8 @@ module.exports = appInfo => {
     domainWhiteList:[ '*' ]
   };
   config.cors = {
-    origin: '*',
-    credentials: true, //允许cookie 跨域
+    origin: 'http://localhost:3000',
+    credentials: true, //允许cookies 跨域
     allowMethods:'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   }
 
