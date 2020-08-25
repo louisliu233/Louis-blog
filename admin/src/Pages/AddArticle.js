@@ -23,6 +23,12 @@ function AddArticle(props){
 
     useEffect(() => {
         getTypeInfo()
+        //获得文章ID
+        let tmpId = props.match.params.id
+        if(tmpId){
+            setArticleId(tmpId)
+            getArticleById(tmpId)
+        } 
     },[])
 
     marked.setOptions({
@@ -143,6 +149,27 @@ function AddArticle(props){
                 )
             }   
     }
+    const getArticleById = (id)=>{
+        axios(servicePath.getArticleById+id,{ 
+            withCredentials: true,
+            header:{ 'Access-Control-Allow-Origin':'*' }
+        }).then(
+            res=>{
+                //let articleInfo= res.data.data[0]
+                setArticleTitle(res.data.data[0].title)
+                setArticleContent(res.data.data[0].article_content)
+                let html=marked(res.data.data[0].article_content)
+                setMarkdownContent(html)
+                setIntroducemd(res.data.data[0].introduce)
+                let tmpInt = marked(res.data.data[0].introduce)
+                setIntroducehtml(tmpInt)
+                setShowDate(res.data.data[0].addTime)
+                setSelectType(res.data.data[0].typeId)
+    
+            }
+        )
+    }
+    
 
 
     return (

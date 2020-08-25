@@ -73,6 +73,30 @@ class MainController extends Controller{
               this.ctx.body={list:resList}
 
         }
+        //删除文章
+        async delArticle(){
+          let id = this.ctx.params.id
+          const res = await this.app.mysql.delete('article',{'id':id})
+          this.ctx.body={data:res}
+        }
+        
+        //根据文章ID得到文章详情，用于修改文章
+        async getArticleById(){
+          let id = this.ctx.params.id
+
+          let sql = 'SELECT article.id as id,'+
+          'article.title as title,'+
+          'article.introduce as introduce,'+
+          'article.article_content as article_content,'+
+          'article.addTime as addTime,'+
+          'article.view_count as view_count ,'+
+          'type.typeName as typeName ,'+
+          'type.id as typeId '+
+          'FROM article LEFT JOIN type ON article.type_id = type.Id '+
+          'WHERE article.id='+id
+          const result = await this.app.mysql.query(sql)
+          this.ctx.body={data:result}
+        }
 }
 
 module.exports = MainController

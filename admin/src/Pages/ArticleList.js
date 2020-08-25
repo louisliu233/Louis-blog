@@ -27,6 +27,32 @@ function ArticleList(props){
                 }
             )
     } 
+    //删除文章的方法
+    const delArticle = (id) => {
+        confirm({
+            title:'三思',
+            content:'点击ok，完成删除',
+            onOk(){
+                axios(servicePath.delArticle+id,{ withCredentials: true}).then(
+                    res=>{ 
+                        message.success('文章删除成功')
+                        getList()
+                        }
+                    )
+            },
+            onCancel(){
+                message.success('文章没有变化')
+            }
+        }   
+        )
+    }
+
+        //修改文章
+    const updateArticle = (id,checked)=>{
+
+        props.history.push('/index/add/'+id)
+
+    }
 
 
     return (
@@ -78,9 +104,9 @@ function ArticleList(props){
                             </Col>
 
                             <Col span={4}>
-                              <Button type="primary" >修改</Button>&nbsp;
+                              <Button type="primary" onClick={() => {updateArticle(item.id)}}>修改</Button>&nbsp;
 
-                              <Button >删除 </Button>
+                              <Button onClick={() => {delArticle(item.id)}}>删除 </Button>
                             </Col>
                         </Row>
 
